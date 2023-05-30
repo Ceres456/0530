@@ -1,0 +1,113 @@
+앞에 있는 부분은 잠시 문제로 터미널을 끄느라 삭제됨!!!!!!!
+root@student8-virtual-machine:~/바탕화면# cd
+root@student8-virtual-machine:~# cd /etc/xinet.d
+bash: cd: /etc/xinet.d: 그런 파일이나 디렉터리가 없습니다
+root@student8-virtual-machine:~# cd /etc
+root@student8-virtual-machine:/etc# ls
+ModemManager            bluetooth                      deluser.conf         groff            ipp-usb          logrotate.conf       nftables.conf  rc0.d          shells             ucf.conf
+NetworkManager          brlapi.key                     depmod.d             group            iproute2         logrotate.d          nsswitch.conf  rc1.d          skel               udev
+PackageKit              brltty                         dhcp                 group-           issue            lsb-release          openvpn        rc2.d          snmp               udisks2
+UPower                  brltty.conf                    dictionaries-common  grub.d           issue.net        machine-id           opt            rc3.d          speech-dispatcher  ufw
+X11                     ca-certificates                dpkg                 gshadow          kernel           magic                os-release     rc4.d          ssh                update-manager
+acpi                    ca-certificates.conf           e2scrub.conf         gshadow-         kernel-img.conf  magic.mime           pam.conf       rc5.d          ssl                update-motd.d
+adduser.conf            ca-certificates.conf.dpkg-old  emacs                gss              kerneloops.conf  mailcap              pam.d          rc6.d          subgid             update-notifier
+alsa                    chatscripts                    environment          gtk-2.0          ld.so.cache      mailcap.order        papersize      rcS.d          subgid-            usb_modeswitch.conf
+alternatives            console-setup                  environment.d        gtk-3.0          ld.so.conf       manpath.config       passwd         resolv.conf    subuid             usb_modeswitch.d
+anacrontab              cracklib                       ethertypes           hdparm.conf      ld.so.conf.d     mc                   passwd-        rmt            subuid-            vim
+apg.conf                cron.d                         firefox              host.conf        ldap             mime.types           pcmcia         rpc            sudo.conf          vmware-tools
+apm                     cron.daily                     fonts                hostid           legal            mke2fs.conf          perl           rsyslog.conf   sudo_logsrvd.conf  vtrgb
+apparmor                cron.hourly                    fprintd.conf         hostname         libao.conf       modprobe.d           pki            rsyslog.d      sudoers            vulkan
+apparmor.d              cron.monthly                   fstab                hosts            libaudit.conf    modules              pm             rygel.conf     sudoers.d          wgetrc
+apport                  cron.weekly                    fuse.conf            hosts.allow      libblockdev      modules-load.d       pnm2ppa.conf   sane.d         sysctl.conf        wpa_supplicant
+appstream.conf          crontab                        fwupd                hosts.deny       libnl-3          mtab                 polkit-1       security       sysctl.d           xattr.conf
+apt                     cups                           gai.conf             hp               libpaper.d       nanorc               ppp            selinux        systemd            xdg
+avahi                   cupshelpers                    gdb                  ifplugd          libreoffice      netconfig            profile        sensors.d      terminfo           xinetd.conf
+bash.bashrc             dbus-1                         gdm3                 init             locale.alias     netplan              profile.d      sensors3.conf  thermald           xinetd.d
+bash_completion         dconf                          geoclue              init.d           locale.gen       network              protocols      services       thunderbird        xml
+bash_completion.d       debconf.conf                   ghostscript          initramfs-tools  localtime        networkd-dispatcher  pulse          sgml           timezone           zsh_command_not_found
+bindresvport.blacklist  debian_version                 glvnd                inputrc          logcheck         networks             python3        shadow         tmpfiles.d
+binfmt.d                default                        gnome                insserv.conf.d   login.defs       newt                 python3.10     shadow-        ubuntu-advantage
+root@student8-virtual-machine:/etc# cd /xinetd.d
+bash: cd: /xinetd.d: 그런 파일이나 디렉터리가 없습니다
+root@student8-virtual-machine:/etc# cd xinetd.d
+root@student8-virtual-machine:/etc/xinetd.d# nano telnet
+root@student8-virtual-machine:/etc/xinetd.d# cd
+root@student8-virtual-machine:~# adduser teluser
+'teluser' 사용자를 추가 중...
+새 그룹 'teluser' (1004) 추가 ...
+새 사용자 'teluser' (1006) 을(를) 그룹 'teluser' (으)로 추가 ...
+'/home/teluser' 홈 디렉터리를 생성하는 중...
+'/etc/skel'에서 파일들을 복사하는 중...
+새 암호: 
+잘못된 비밀번호: 암호는 8 개의 문자 보다 짧습니다
+새 암호 재입력: 
+passwd: 암호를 성공적으로 업데이트했습니다
+teluser의 사용자의 정보를 바꿉니다
+새로운 값을 넣거나, 기본값을 원하시면 엔터를 치세요
+	이름 []: 
+	방 번호 []: 
+	직장 전화번호 []: 
+	집 전화번호 []: 
+	기타 []: 
+정보가 올바릅니까? [Y/n] y
+root@student8-virtual-machine:~# systemctl restart xinetd
+root@student8-virtual-machine:~# systemctl enable xinetd
+xinetd.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable xinetd
+root@student8-virtual-machine:~# systemctl status xinetd
+● xinetd.service - LSB: Starts or stops the xinetd daemon.
+     Loaded: loaded (/etc/init.d/xinetd; generated)
+     Active: active (running) since Tue 2023-05-30 09:39:51 KST; 1min 1s ago
+       Docs: man:systemd-sysv-generator(8)
+      Tasks: 1 (limit: 4573)
+     Memory: 492.0K
+        CPU: 80ms
+     CGroup: /system.slice/xinetd.service
+             └─2440 /usr/sbin/xinetd -pidfile /run/xinetd.pid -stayalive -inetd_compat -inetd_ipv6
+
+ 5월 30 09:39:51 student8-virtual-machine xinetd[2440]: Reading included configuration file: /etc/xinetd.d/echo [file=/etc/xinetd.d/echo] [line=14]
+ 5월 30 09:39:51 student8-virtual-machine xinetd[2440]: Reading included configuration file: /etc/xinetd.d/echo-udp [file=/etc/xinetd.d/echo-udp] [line=26]
+ 5월 30 09:39:51 student8-virtual-machine xinetd[2440]: Reading included configuration file: /etc/xinetd.d/servers [file=/etc/xinetd.d/servers] [line=14]
+ 5월 30 09:39:51 student8-virtual-machine xinetd[2440]: Reading included configuration file: /etc/xinetd.d/services [file=/etc/xinetd.d/services] [line=13]
+ 5월 30 09:39:51 student8-virtual-machine xinetd[2440]: Reading included configuration file: /etc/xinetd.d/telnet [file=/etc/xinetd.d/telnet] [line=13]
+ 5월 30 09:39:51 student8-virtual-machine xinetd[2440]: bad service attribute: log_on_faliure [file=/etc/xinetd.d/telnet] [line=9]
+ 5월 30 09:39:51 student8-virtual-machine xinetd[2440]: Reading included configuration file: /etc/xinetd.d/time [file=/etc/xinetd.d/time] [line=10]
+ 5월 30 09:39:51 student8-virtual-machine xinetd[2440]: Reading included configuration file: /etc/xinetd.d/time-udp [file=/etc/xinetd.d/time-udp] [line=28]
+ 5월 30 09:39:51 student8-virtual-machine xinetd[2440]: 2.3.15.3 started with libwrap loadavg labeled-networking options compiled in.
+ 5월 30 09:39:51 student8-virtual-machine xinetd[2440]: Started working: 1 available service
+root@student8-virtual-machine:~# ufw allow 23/tcp
+규칙이 추가되었습니다
+규칙이 추가되었습니다 (v6)
+root@student8-virtual-machine:~# nano etc/xinetd.d
+root@student8-virtual-machine:~# nano etc/xinetd.d/telnet
+root@student8-virtual-machine:~# nano /etc/xinetd.d/telnet
+root@student8-virtual-machine:~# nano /etc/xinetd.d/telnet
+root@student8-virtual-machine:~# systemctl restart xinetd
+root@student8-virtual-machine:~# systemctl enable xinetd
+xinetd.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable xinetd
+root@student8-virtual-machine:~# systemctl status xinetd
+● xinetd.service - LSB: Starts or stops the xinetd daemon.
+     Loaded: loaded (/etc/init.d/xinetd; generated)
+     Active: active (running) since Tue 2023-05-30 09:47:40 KST; 19s ago
+       Docs: man:systemd-sysv-generator(8)
+      Tasks: 1 (limit: 4573)
+     Memory: 488.0K
+        CPU: 70ms
+     CGroup: /system.slice/xinetd.service
+             └─2658 /usr/sbin/xinetd -pidfile /run/xinetd.pid -stayalive -inetd_compat -inetd_ipv6
+
+ 5월 30 09:47:40 student8-virtual-machine xinetd[2658]: Reading included configuration file: /etc/xinetd.d/discard-udp [file=/etc/xinetd.d/discard-udp] [line=25]
+ 5월 30 09:47:40 student8-virtual-machine xinetd[2658]: Reading included configuration file: /etc/xinetd.d/echo [file=/etc/xinetd.d/echo] [line=14]
+ 5월 30 09:47:40 student8-virtual-machine xinetd[2658]: Reading included configuration file: /etc/xinetd.d/echo-udp [file=/etc/xinetd.d/echo-udp] [line=26]
+ 5월 30 09:47:40 student8-virtual-machine xinetd[2658]: Reading included configuration file: /etc/xinetd.d/servers [file=/etc/xinetd.d/servers] [line=14]
+ 5월 30 09:47:40 student8-virtual-machine xinetd[2658]: Reading included configuration file: /etc/xinetd.d/services [file=/etc/xinetd.d/services] [line=13]
+ 5월 30 09:47:40 student8-virtual-machine xinetd[2658]: Reading included configuration file: /etc/xinetd.d/telnet [file=/etc/xinetd.d/telnet] [line=13]
+ 5월 30 09:47:40 student8-virtual-machine xinetd[2658]: Reading included configuration file: /etc/xinetd.d/time [file=/etc/xinetd.d/time] [line=10]
+ 5월 30 09:47:40 student8-virtual-machine xinetd[2658]: Reading included configuration file: /etc/xinetd.d/time-udp [file=/etc/xinetd.d/time-udp] [line=28]
+ 5월 30 09:47:40 student8-virtual-machine xinetd[2658]: 2.3.15.3 started with libwrap loadavg labeled-networking options compiled in.
+ 5월 30 09:47:40 student8-virtual-machine xinetd[2658]: Started working: 1 available service
+root@student8-virtual-machine:~# ufw allow 23/tcp
+존재하는 규칙을 추가하는 걸 건너뜁니다
+존재하는 규칙을 추가하는 걸 건너뜁니다 (v6)
+root@student8-virtual-machine:~# 
